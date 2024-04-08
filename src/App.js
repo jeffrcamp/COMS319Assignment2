@@ -1,24 +1,23 @@
-import logo from './logo.svg';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom';
+import { useLocation} from 'react-router-dom';
+import logo from './logo.svg';  // If needed elsewhere, you can keep this import
 import './App.css';
+import CartView from './CartView';
+import ConfirmationView from './ConfirmationView';
+import Catalog from './Catalog';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <Routes>
+          {/*Testing... goes to confirmation view just to show it works. Change it with catalog or cartview if you wanna see those*/}
+          <Route path="/" element={<Navigate replace to="/cart" />} />
+          <Route path="/cart" element={<Catalog />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
