@@ -1,36 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { CartContext } from './CartContext';
+
 
 function Catalog() {
-  // State for managing products array and search query
-  const [products, setProducts] = useState([
+  // Accessing cart context
+  const { cartItems, addToCart, removeFromCart } = useContext(CartContext);
+
+  // State for managing search query
+  const [searchQuery, setSearchQuery] = useState('');
+
+  // Hardcoded products
+  const [products] = useState([
     { id: 1, name: 'Energy Drink 1', description: 'Description of Energy Drink 1', price: 9.99, image: 'placeholder-image.jpg', quantityInCart: 2 },
     { id: 2, name: 'Energy Drink 2', description: 'Description of Energy Drink 2', price: 8.99, image: 'placeholder-image.jpg', quantityInCart: 1 },
     { id: 3, name: 'Energy Drink 3', description: 'Description of Energy Drink 3', price: 7.99, image: 'placeholder-image.jpg', quantityInCart: 0 },
   ]);
-  const [searchQuery, setSearchQuery] = useState('');
-
-  // Function to handle adding a product to the cart
-  const handleAddToCart = (productId) => {
-    const updatedProducts = products.map((product) => {
-      if (product.id === productId) {
-        return { ...product, quantityInCart: product.quantityInCart + 1 };
-      }
-      return product;
-    });
-    setProducts(updatedProducts);
-  };
-
-  // Function to handle removing a product from the cart
-  const handleRemoveFromCart = (productId) => {
-    const updatedProducts = products.map((product) => {
-      if (product.id === productId && product.quantityInCart > 0) {
-        return { ...product, quantityInCart: product.quantityInCart - 1 };
-      }
-      return product;
-    });
-    setProducts(updatedProducts);
-  };
 
   // Function to handle search input change
   const handleSearchChange = (event) => {
@@ -79,11 +64,11 @@ function Catalog() {
                     <div className="d-flex justify-content-between align-items-center">
                       <div className="btn-group">
                         {/* Plus button to add a product to the cart */}
-                        <button type="button" className="btn btn-sm btn-outline-secondary" onClick={() => handleAddToCart(product.id)}>+</button>
+                        <button type="button" className="btn btn-sm btn-outline-secondary" onClick={() => addToCart(product)}>+</button>
                         {/* Quantity field showing the number of products in the cart */}
                         <input type="text" className="form-control" value={product.quantityInCart} readOnly />
                         {/* Minus button to remove a product from the cart */}
-                        <button type="button" className="btn btn-sm btn-outline-secondary" onClick={() => handleRemoveFromCart(product.id)}>-</button>
+                        <button type="button" className="btn btn-sm btn-outline-secondary" onClick={() => removeFromCart(product.id)}>-</button>
                       </div>
                       <small className="text-muted">${product.price}</small>
                     </div>
@@ -101,7 +86,7 @@ function Catalog() {
 
         <div className="container">
           <div className="footer">
-            <p>© 2024 Energy Drinks Inc</p>
+            <p>© 2024 Energy Drinks Aggregate Inc</p>
             <p>Contact us at support@example.com. Learn more about us <a href="about.html">here</a>.</p>
           </div>
         </div>
