@@ -1,0 +1,12 @@
+.dots-leader {
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1; 
+    margin: 0 10px; 
+  }
+    
+  .price {
+    min-width: 80px; /* Ensures enough room for prices to line up */
+    text-align: right; /* Aligns price text to the right */
+  }
+  

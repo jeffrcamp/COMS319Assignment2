@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1, 
+        "name": "Celsius", 
+        "flavor": "Peach Mango Green Tea",
+        "description": "A refreshing blend of peach and mango flavors combined with green tea, released in 2018. Key ingredients include green tea extract, ginger extract, and guarana.", 
+        "price": 2.50, 
+        "image": "./images/celsius.webp"
+    },
+    {
+        "id": 2, 
+        "name": "Monster", 
+        "flavor": "Mango Loco",
+        "description": "A tropical fusion of juicy mango flavor, released in 2017. Contains natural caffeine, taurine, and B vitamins for an energy boost.", 
+        "price": 2.60, 
+        "image": "./images/monster.webp"
+    },
+    {
+        "id": 3, 
+        "name": "Ghost", 
+        "flavor": "Cherry Limeade",
+        "description": "Sweet cherry meets tart lime in this energizing drink, introduced in 2019. Features natural flavors, caffeine from coffee beans, and citric acid.", 
+        "price": 2.50, 
+        "image": "./images/ghost.webp"
+    },
+    {
+        "id": 4, 
+        "name": "Reign", 
+        "flavor": "Melon Mania",
+        "description": "A burst of melon flavor with a hint of sweetness, released in 2020. Packed with electrolytes, BCAAs, and CoQ10 to support performance.", 
+        "price": 2.50, 
+        "image": "./images/reign.webp"
+    },
+    {
+        "id": 5, 
+        "name": "Rockstar", 
+        "flavor": "Punched: Fruit Punch",
+        "description": "Classic fruit punch flavors with a powerful punch, launched in 2015. Ingredients include ginseng, guarana, and a mix of fruit juices.", 
+        "price": 2.60, 
+        "image": "./images/rockstar.webp"
+    },
+    {
+        "id": 6, 
+        "name": "Redbull", 
+        "flavor": "Sea Blue Edition: Juneberry",
+        "description": "Unique Juneberry flavor with a refreshing blue twist, new for 2021. Contains caffeine, taurine, and essential amino acids.", 
+        "price": 2.60, 
+        "image": "./images/redbull.webp"
+    }
+]

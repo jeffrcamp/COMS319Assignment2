@@ -1,29 +1,26 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { CartContext } from './CartContext';
-
+import Products from './Products.json';
 
 function Catalog() {
-  // Accessing cart context
-  const { cartItems, addToCart, removeFromCart } = useContext(CartContext);
-
-  // State for managing search query
+  const {cartItems, addToCart, removeFromCart } = useContext(CartContext);
   const [searchQuery, setSearchQuery] = useState('');
 
-  // Hardcoded products
-  const [products] = useState([
-    { id: 1, name: 'Energy Drink 1', description: 'Description of Energy Drink 1', price: 9.99, image: 'placeholder-image.jpg', quantityInCart: 2 },
-    { id: 2, name: 'Energy Drink 2', description: 'Description of Energy Drink 2', price: 8.99, image: 'placeholder-image.jpg', quantityInCart: 1 },
-    { id: 3, name: 'Energy Drink 3', description: 'Description of Energy Drink 3', price: 7.99, image: 'placeholder-image.jpg', quantityInCart: 0 },
-  ]);
-
-  // Function to handle search input change
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
   };
 
+  const addToCartAndUpdateQuantity = (productId) => {
+    addToCart(productId); // Add item to cart
+  };
+
+  const removeFromCartAndUpdateQuantity = (productId) => {
+    removeFromCart(productId); // Remove item from cart
+  };
+
   // Filter products based on search query
-  const filteredProducts = products.filter((product) =>
+  const filteredProducts = Products.filter((product) =>
     product.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
@@ -60,15 +57,16 @@ function Catalog() {
                   <img src={product.image} alt={product.name} className="card-img-top" />
                   <div className="card-body">
                     <h5 className="card-title">{product.name}</h5>
+                    <h6>{product.flavor}</h6>
                     <p className="card-text">{product.description}</p>
                     <div className="d-flex justify-content-between align-items-center">
                       <div className="btn-group">
                         {/* Plus button to add a product to the cart */}
-                        <button type="button" className="btn btn-sm btn-outline-secondary" onClick={() => addToCart(product)}>+</button>
+                        <button type="button" className="btn btn-sm btn-outline-secondary" onClick={() => addToCartAndUpdateQuantity(product.id)}>+</button>
                         {/* Quantity field showing the number of products in the cart */}
-                        <input type="text" className="form-control" value={product.quantityInCart} readOnly />
+                        <input type="text" className="form-control" value={cartItems[product.id] || 0} readOnly />
                         {/* Minus button to remove a product from the cart */}
-                        <button type="button" className="btn btn-sm btn-outline-secondary" onClick={() => removeFromCart(product.id)}>-</button>
+                        <button type="button" className="btn btn-sm btn-outline-secondary" onClick={() => removeFromCartAndUpdateQuantity(product.id)}>-</button>
                       </div>
                       <small className="text-muted">${product.price}</small>
                     </div>

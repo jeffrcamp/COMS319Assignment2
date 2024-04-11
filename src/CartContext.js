@@ -3,14 +3,24 @@ import React, { createContext, useState } from 'react';
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-  const [cartItems, setCartItems] = useState([]);
+  // Initialize cartItems as an empty object
+  const [cartItems, setCartItems] = useState({});
 
-  const addToCart = (item) => {
-    setCartItems([...cartItems, item]);
+  // Function to add an item to the cart
+  const addToCart = (productId) => {
+    setCartItems(prevCart => ({
+      ...prevCart,
+      [productId]: (prevCart[productId] || 0) + 1  // Increment quantity if item already exists
+    }));
   };
 
-  const removeFromCart = (itemId) => {
-    setCartItems(cartItems.filter(item => item.id !== itemId));
+  // Function to remove an item from the cart
+  const removeFromCart = (productId) => {
+    if (cartItems.hasOwnProperty(productId)) {
+      const updatedCart = { ...cartItems };
+      delete updatedCart[productId];  // Remove item from cart
+      setCartItems(updatedCart);
+    }
   };
 
   return (
@@ -19,3 +29,4 @@ export const CartProvider = ({ children }) => {
     </CartContext.Provider>
   );
 };
+

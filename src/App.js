@@ -7,7 +7,6 @@ import CartView from './CartView';
 import ConfirmationView from './ConfirmationView';
 import CatalogView from './Catalog';
 
-
 function App() {
   return (
     <Router>
